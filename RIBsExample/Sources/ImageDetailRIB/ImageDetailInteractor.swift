@@ -1,0 +1,61 @@
+//
+//  ImageDetailInteractor.swift
+//  RIBsExample
+//
+//  Created by Mathpresso on 2020/08/10.
+//  Copyright © 2020 Mathpresso. All rights reserved.
+//
+
+import RIBs
+import RxCocoa
+import RxSwift
+
+protocol ImageDetailRouting: ViewableRouting {
+}
+
+protocol ImageDetailPresentable: Presentable {
+  var listener: ImageDetailPresentableListener? { get set }
+  
+  var detachObservable: Observable<Void> { get }
+}
+
+protocol ImageDetailListener: class {
+  func detachImageDetailRIB()
+}
+
+final class ImageDetailInteractor:
+  PresentableInteractor<ImageDetailPresentable>,
+  ImageDetailInteractable,
+  ImageDetailPresentableListener
+{
+  // MARK: - ImageDetailInteractable
+  
+  weak var router: ImageDetailRouting?
+  
+  weak var listener: ImageDetailListener?
+  
+  // MARK: - Con(De)structor
+  
+  override init(presenter: ImageDetailPresentable) {
+    super.init(presenter: presenter)
+    presenter.listener = self
+  }
+  
+  // MARK: - Overridden: PresentableInteractor
+  
+  override func didBecomeActive() {
+    super.didBecomeActive()
+    
+    bindPresenter()
+  }
+  
+  // MARK: - Binding
+  
+  private func bindPresenter() {
+    presenter.detachObservable
+      .bind { [weak self] _ in
+        self?.listener?.detachImageDetailRIB()
+    }
+    .disposeOnDeactivate(interactor: self)
+  }
+}
