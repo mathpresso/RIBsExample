@@ -50,11 +50,4 @@ extension RootRouter {
     imageRouter = router
     viewController.present(router.viewControllable, animated: false)
   }
-  
-  func detachImageRIB() {
-    guard let router = imageRouter else {return}
-    router.viewControllable.dismissPresentedViewController()
-    detachChild(router)
-    imageRouter = nil
-  }
 }
