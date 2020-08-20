@@ -47,6 +47,10 @@ final class ImageInteractor:
     presenter.listener = self
   }
   
+  deinit {
+    print("deinit: \(type(of: self))")
+  }
+  
   // MARK: - Overridden: PresentableInteractor
   
   override func didBecomeActive() {

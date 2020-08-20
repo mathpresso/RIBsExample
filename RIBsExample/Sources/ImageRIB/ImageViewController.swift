@@ -55,6 +55,10 @@ final class ImageViewController:
     fatalError("init(coder:) has not been implemented")
   }
   
+  deinit {
+    print("deinit: \(type(of: self))")
+  }
+  
   // MARK: - Overridden: UIViewController
   
   override func viewDidLoad() {
