@@ -32,8 +32,11 @@ final class ImageBuilder:
   
   func build(withListener listener: ImageListener) -> ImageRouting {
     let component = ImageComponent(dependency: dependency)
-    let viewController = ImageViewController(image: component.image)
-    let interactor = ImageInteractor(presenter: viewController)
+    let viewController = ImageViewController()
+    let interactor = ImageInteractor(
+      image: component.image,
+      presenter: viewController
+    )
     interactor.listener = listener
     
     let imageDetailBuilder = ImageDetailBuilder(dependency: component)

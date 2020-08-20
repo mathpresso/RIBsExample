@@ -7,6 +7,7 @@
 //
 
 import RIBs
+import RxSwift
 import RxCocoa
 
 protocol ImageRouting: ViewableRouting {
@@ -20,6 +21,7 @@ protocol ImagePresentable: Presentable {
 }
 
 protocol ImageListener: class {
+  
 }
 
 final class ImageInteractor:
@@ -33,9 +35,14 @@ final class ImageInteractor:
   
   weak var listener: ImageListener?
   
+  private let viewModelRelay: BehaviorRelay<UIImage>
+  
+  private(set) lazy var viewModel: Observable<UIImage> = viewModelRelay.asObservable()
+  
   // MARK: - Con(De)structor
   
-  override init(presenter: ImagePresentable) {
+  init(image: UIImage, presenter: ImagePresentable) {
+    viewModelRelay = .init(value: image)
     super.init(presenter: presenter)
     presenter.listener = self
   }

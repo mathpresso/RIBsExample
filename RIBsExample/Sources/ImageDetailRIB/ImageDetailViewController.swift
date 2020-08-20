@@ -12,6 +12,7 @@ import RxSwift
 import SnapKit
 
 protocol ImageDetailPresentableListener: class {
+  var viewModel: Observable<UIImage> { get }
 }
 
 final class ImageDetailViewController:
@@ -47,10 +48,8 @@ final class ImageDetailViewController:
   
   // MARK: - Con(De)structor
   
-  init(image: UIImage) {
+  init() {
     super.init(nibName: nil, bundle: nil)
-
-    self.imageView.image = image
   }
   
   required init?(coder: NSCoder) {
@@ -63,10 +62,20 @@ final class ImageDetailViewController:
     super.viewDidLoad()
     
     setupUI()
+    bind(to: listener)
     bindView()
   }
   
   // MARK: - Binding
+  
+  private func bind(to listener: ImageDetailPresentableListener?) {
+    listener?.viewModel
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [weak self] image in
+        self?.imageView.image = image
+      })
+      .disposed(by: disposeBag)
+  }
   
   private func bindView() {
     closeButton.rx.tap

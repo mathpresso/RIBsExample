@@ -53,9 +53,8 @@ extension ImageRouter {
   
   func detachImageDetailRIB() {
     guard let router = imageDetailRouter else { return }
-    
     viewControllable.dismiss(router.viewControllable)
     detachChild(router)
-    self.imageDetailRouter = nil
+    imageDetailRouter = nil
   }
 }

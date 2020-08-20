@@ -7,10 +7,12 @@
 //
 
 import RIBs
+import RxSwift
 import RxCocoa
 import SnapKit
 
 protocol ImagePresentableListener: class {
+  var viewModel: Observable<UIImage> { get }
 }
 
 final class ImageViewController:
@@ -25,8 +27,8 @@ final class ImageViewController:
   lazy var detailButtonClicked: ControlEvent<Void> = detailButton.rx.tap
   
   // MARK: - Properties
-  
-  private let image: UIImage
+ 
+  private let disposeBag: DisposeBag = .init()
   
   // MARK: - UIComponents
   
@@ -44,11 +46,9 @@ final class ImageViewController:
   
   // MARK: - Con(De)structor
   
-  init(image: UIImage) {
-    self.image = image
+  init() {
     super.init(nibName: nil, bundle: nil)
     modalPresentationStyle = .fullScreen
-    imageView.image = image
   }
   
   required init?(coder: NSCoder) {
@@ -61,6 +61,18 @@ final class ImageViewController:
     super.viewDidLoad()
     
     setupUI()
+    bind(to: listener)
+  }
+  
+  // MARK: - Binding
+  
+  private func bind(to listener: ImagePresentableListener?) {
+    listener?.viewModel
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [weak self] image in
+        self?.imageView.image = image
+      })
+      .disposed(by: disposeBag)
   }
   
   // MARK: - ImageViewControllable
