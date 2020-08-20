@@ -8,6 +8,7 @@
 
 import RIBs
 import RxCocoa
+import SnapKit
 
 protocol ImagePresentableListener: class {
 }
@@ -31,14 +32,12 @@ final class ImageViewController:
   
   private let imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.contentMode = .scaleAspectFit
     return imageView
   }()
   
   private var detailButton: UIButton = {
     let button = UIButton(type: .system)
-    button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("Show detail image", for: .normal)
     return button
   }()
@@ -83,12 +82,16 @@ extension ImageViewController {
   }
   
   private func layout() {
-    imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
-    imageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
-    
-    detailButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    detailButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16).isActive = true
+    imageView.snp.makeConstraints {
+      $0.centerX.equalTo(view.snp.centerX)
+      $0.centerY.equalTo(view.snp.centerY)
+      $0.width.equalToSuperview().multipliedBy(0.5)
+      $0.height.equalTo(view.snp.width).multipliedBy(0.5)
+    }
+
+    detailButton.snp.makeConstraints {
+      $0.centerX.equalTo(imageView.snp.centerX)
+      $0.top.equalTo(imageView.snp.bottom).offset(8)
+    }
   }
 }

@@ -9,6 +9,7 @@
 import RIBs
 import RxCocoa
 import RxSwift
+import SnapKit
 
 protocol ImageDetailPresentableListener: class {
 }
@@ -34,15 +35,12 @@ final class ImageDetailViewController:
   
   private let closeButton: UIButton = {
     let button = UIButton(type: .system)
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("Close detail image", for: .normal)
     return button
   }()
   
   private let imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.contentMode = .scaleAspectFit
     return imageView
   }()
@@ -90,13 +88,15 @@ extension ImageDetailViewController {
   }
   
   private func layout() {
-    closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 16).isActive = true
-    closeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    
-    imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-    imageView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 16).isActive = true
-    imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    closeButton.snp.makeConstraints {
+      $0.top.equalToSuperview().offset(16)
+      $0.centerX.equalToSuperview()
+    }
+
+    imageView.snp.makeConstraints {
+      $0.top.equalTo(closeButton.snp.bottom).offset(16)
+      $0.leading.trailing.bottom.equalToSuperview()
+    }
   }
 }
 
