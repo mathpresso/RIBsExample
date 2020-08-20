@@ -1,4 +1,4 @@
-platform :ios, '13.6'
+platform :ios, '12.0'
 use_frameworks!
 
 target 'RIBsExample' do
