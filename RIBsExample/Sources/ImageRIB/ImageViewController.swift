@@ -47,7 +47,7 @@ final class ImageViewController:
   init(image: UIImage) {
     self.image = image
     super.init(nibName: nil, bundle: nil)
-    
+    modalPresentationStyle = .fullScreen
     imageView.image = image
   }
   

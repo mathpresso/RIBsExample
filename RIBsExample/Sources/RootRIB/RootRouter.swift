@@ -45,16 +45,14 @@ final class RootRouter:
 // MARK: - RootRouting
 extension RootRouter {
   func attachImageRIB() {
-    let router = imageBuilder.build(image: UIImage(named: "image1.jpg")!, withListener: interactor)
-    router.viewControllable.uiviewController.modalPresentationStyle = .fullScreen
-    self.imageRouter = router
+    let router = imageBuilder.build(withListener: interactor)
     attachChild(router)
+    imageRouter = router
     viewController.present(router.viewControllable, animated: false)
   }
   
   func detachImageRIB() {
     guard let router = imageRouter else {return}
-    
     router.viewControllable.dismissPresentedViewController()
     detachChild(router)
     imageRouter = nil

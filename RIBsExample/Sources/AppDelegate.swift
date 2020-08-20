@@ -20,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let window = UIWindow(frame: UIScreen.main.bounds)
     self.window = window
     
-    let rootBuilder = RootBuilder()
-    let launchRouter = rootBuilder.build()
+    let launchRouter = RootBuilder(dependency: AppComponent()).build()
     self.launchRouter = launchRouter
     launchRouter.launch(from: window)
     

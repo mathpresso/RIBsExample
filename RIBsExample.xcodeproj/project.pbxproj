@@ -26,6 +26,8 @@
 		53AC1AE824E0CF8B006763F4 /* ViewControllable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AC1AE724E0CF8B006763F4 /* ViewControllable+Extensions.swift */; };
 		53AC1AEC24E0D01A006763F4 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 53AC1AEB24E0D01A006763F4 /* image1.jpg */; };
 		89CDF2D0CA6248C5097380AD /* Pods_RIBsExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9E0B6E6965128205AD15D9 /* Pods_RIBsExample.framework */; };
+		DBB1EEAA24EE82370066DD0F /* RootComponent+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB1EEA924EE82370066DD0F /* RootComponent+Image.swift */; };
+		DBB1EEAC24EE837C0066DD0F /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB1EEAB24EE837B0066DD0F /* AppComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		53AC1AE224E0CD44006763F4 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		53AC1AE724E0CF8B006763F4 /* ViewControllable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllable+Extensions.swift"; sourceTree = "<group>"; };
 		53AC1AEB24E0D01A006763F4 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
+		DBB1EEA924EE82370066DD0F /* RootComponent+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+Image.swift"; sourceTree = "<group>"; };
+		DBB1EEAB24EE837B0066DD0F /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,7 @@
 		53AC1AC524E0CBA5006763F4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				DBB1EEAB24EE837B0066DD0F /* AppComponent.swift */,
 				53AC1AB124E0CB64006763F4 /* AppDelegate.swift */,
 				53AC1AE624E0CF4E006763F4 /* Extensions */,
 				53AC1AC924E0CC94006763F4 /* ImageDetailRIB */,
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				53AC1ACA24E0CCCE006763F4 /* RootBuilder.swift */,
+				DBB1EEA924EE82370066DD0F /* RootComponent+Image.swift */,
 				53AC1ACC24E0CCD7006763F4 /* RootInteractor.swift */,
 				53AC1ACE24E0CCE1006763F4 /* RootRouter.swift */,
 				53AC1AD024E0CCEA006763F4 /* RootViewController.swift */,
@@ -293,12 +299,14 @@
 				53AC1AE124E0CD3B006763F4 /* ImageDetailRouter.swift in Sources */,
 				53AC1ACF24E0CCE1006763F4 /* RootRouter.swift in Sources */,
 				53AC1AD924E0CD0D006763F4 /* ImageViewController.swift in Sources */,
+				DBB1EEAC24EE837C0066DD0F /* AppComponent.swift in Sources */,
 				53AC1AE324E0CD44006763F4 /* ImageDetailViewController.swift in Sources */,
 				53AC1AD324E0CCF5006763F4 /* ImageBuilder.swift in Sources */,
 				53AC1ADD24E0CD2C006763F4 /* ImageDetailBuilder.swift in Sources */,
 				53AC1ADB24E0CD19006763F4 /* ImageComponent+ImageDetail.swift in Sources */,
 				53AC1AD124E0CCEA006763F4 /* RootViewController.swift in Sources */,
 				53AC1ADF24E0CD34006763F4 /* ImageDetailInteractor.swift in Sources */,
+				DBB1EEAA24EE82370066DD0F /* RootComponent+Image.swift in Sources */,
 				53AC1AB224E0CB64006763F4 /* AppDelegate.swift in Sources */,
 				53AC1ACD24E0CCD7006763F4 /* RootInteractor.swift in Sources */,
 				53AC1AD524E0CCFD006763F4 /* ImageInteractor.swift in Sources */,
