@@ -17,7 +17,7 @@ protocol ImageRouting: ViewableRouting {
 
 protocol ImagePresentable: Presentable {
   var listener: ImagePresentableListener? { get set }
-  var detailButtonClickEventStream: Observable<Void> { get }
+  var detailButtonClickObservable: Observable<Void> { get }
 }
 
 protocol ImageListener: class {
@@ -61,7 +61,7 @@ final class ImageInteractor:
   // MARK: - Binding
   
   private func bindPresenter() {
-    presenter.detailButtonClickEventStream
+    presenter.detailButtonClickObservable
       .bind { [weak self] in
         self?.router?.attachImageDetailRIB()
     }

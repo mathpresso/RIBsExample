@@ -24,7 +24,7 @@ final class ImageViewController:
   
   weak var listener: ImagePresentableListener?
   
-  lazy var detailButtonClickEventStream: Observable<Void> = detailButton.rx.tap.asObservable()
+  lazy var detailButtonClickObservable: Observable<Void> = detailButton.rx.tap.asObservable()
   
   // MARK: - Properties
  
