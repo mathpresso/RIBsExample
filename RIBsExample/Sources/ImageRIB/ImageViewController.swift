@@ -20,7 +20,7 @@ final class ImageViewController:
   ImagePresentable,
   ImageViewControllable
 {
-  // MARK: - RootPresentable
+  // MARK: - ImagePresentable
   
   weak var listener: ImagePresentableListener?
   
