@@ -9,7 +9,6 @@
 import RIBs
 
 protocol RootPresentableListener: class {
-  func showImageRIB()
 }
 
 final class RootViewController:
@@ -20,16 +19,4 @@ final class RootViewController:
   // MARK: - RootPresentable
   
   weak var listener: RootPresentableListener?
-  
-  // MARK: - Overridden: UIViewController
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    
-    listener?.showImageRIB()
-  }
 }

@@ -9,11 +9,9 @@
 import RIBs
 
 protocol RootDependency: Dependency {
-  
 }
 
 final class RootComponent: Component<RootDependency> {
-  
   let rootViewController: RootViewController
   
   init(dependency: RootDependency, rootViewController: RootViewController) {

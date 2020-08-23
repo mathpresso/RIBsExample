@@ -27,9 +27,7 @@ final class RootRouter:
   
   private let imageBuilder: ImageBuildable
   
-  private var imageRouter: ImageRouting?
-  
-  // MARK: - Overridden: LaunchRouter
+  // MARK: - Con(De)structor
   
   init(
     imageBuilder: ImageBuildable,
@@ -40,14 +38,20 @@ final class RootRouter:
     super.init(interactor: interactor, viewController: viewController)
     interactor.router = self
   }
-}
-
-// MARK: - RootRouting
-extension RootRouter {
-  func attachImageRIB() {
+  
+  // MARK: - Overridden: LaunchRouter
+  
+  override func didLoad() {
+    super.didLoad()
+    
+    attachImageRIB()
+  }
+  
+  // MARK: - Private methods
+  
+  private func attachImageRIB() {
     let router = imageBuilder.build(withListener: interactor)
     attachChild(router)
-    imageRouter = router
     viewController.present(router.viewControllable, animated: false)
   }
 }

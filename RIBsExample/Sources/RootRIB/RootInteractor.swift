@@ -9,7 +9,6 @@
 import RIBs
 
 protocol RootRouting: ViewableRouting {
-  func attachImageRIB()
 }
 
 protocol RootPresentable: Presentable {
@@ -30,17 +29,10 @@ final class RootInteractor:
   
   weak var listener: RootListener?
   
-  // MARK: - Overridden: PresentableInteractor
+  // MARK: - Con(De)structor
   
   override init(presenter: RootPresentable) {
     super.init(presenter: presenter)
     presenter.listener = self
-  }
-}
-
-// MARK: - RootPresentableListener
-extension RootInteractor {
-  func showImageRIB() {
-    router?.attachImageRIB()
   }
 }
