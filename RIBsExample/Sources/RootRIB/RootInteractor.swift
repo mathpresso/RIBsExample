@@ -10,7 +10,6 @@ import RIBs
 
 protocol RootRouting: ViewableRouting {
   func attachImageRIB()
-  func detachImageRIB()
 }
 
 protocol RootPresentable: Presentable {

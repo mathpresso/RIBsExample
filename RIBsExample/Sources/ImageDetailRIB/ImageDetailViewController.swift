@@ -9,8 +9,10 @@
 import RIBs
 import RxCocoa
 import RxSwift
+import SnapKit
 
 protocol ImageDetailPresentableListener: class {
+  var viewModel: Observable<UIImage> { get }
 }
 
 final class ImageDetailViewController:
@@ -34,29 +36,28 @@ final class ImageDetailViewController:
   
   private let closeButton: UIButton = {
     let button = UIButton(type: .system)
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("Close detail image", for: .normal)
     return button
   }()
   
   private let imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.contentMode = .scaleAspectFit
     return imageView
   }()
   
   // MARK: - Con(De)structor
   
-  init(image: UIImage) {
+  init() {
     super.init(nibName: nil, bundle: nil)
-
-    self.imageView.image = image
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  deinit {
+    print("deinit: \(type(of: self))")
   }
   
   // MARK: - Overridden: UIViewController
@@ -65,10 +66,20 @@ final class ImageDetailViewController:
     super.viewDidLoad()
     
     setupUI()
+    bind(to: listener)
     bindView()
   }
   
   // MARK: - Binding
+  
+  private func bind(to listener: ImageDetailPresentableListener?) {
+    listener?.viewModel
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [weak self] image in
+        self?.imageView.image = image
+      })
+      .disposed(by: disposeBag)
+  }
   
   private func bindView() {
     closeButton.rx.tap
@@ -90,13 +101,15 @@ extension ImageDetailViewController {
   }
   
   private func layout() {
-    closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 16).isActive = true
-    closeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    
-    imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-    imageView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 16).isActive = true
-    imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    closeButton.snp.makeConstraints {
+      $0.top.equalToSuperview().offset(16)
+      $0.centerX.equalToSuperview()
+    }
+
+    imageView.snp.makeConstraints {
+      $0.top.equalTo(closeButton.snp.bottom).offset(16)
+      $0.leading.trailing.bottom.equalToSuperview()
+    }
   }
 }
 

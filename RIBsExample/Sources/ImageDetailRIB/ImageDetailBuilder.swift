@@ -32,8 +32,11 @@ final class ImageDetailBuilder:
   
   func build(withListener listener: ImageDetailListener) -> ImageDetailRouting {
     let component = ImageDetailComponent(dependency: dependency)
-    let viewController = ImageDetailViewController(image: component.image)
-    let interactor = ImageDetailInteractor(presenter: viewController)
+    let viewController = ImageDetailViewController()
+    let interactor = ImageDetailInteractor(
+      image: component.image,
+      presenter: viewController
+    )
     interactor.listener = listener
     
     return ImageDetailRouter(

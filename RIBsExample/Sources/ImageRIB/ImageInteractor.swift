@@ -7,6 +7,7 @@
 //
 
 import RIBs
+import RxSwift
 import RxCocoa
 
 protocol ImageRouting: ViewableRouting {
@@ -16,10 +17,11 @@ protocol ImageRouting: ViewableRouting {
 
 protocol ImagePresentable: Presentable {
   var listener: ImagePresentableListener? { get set }
-  var detailButtonClicked: ControlEvent<Void> { get }
+  var detailButtonClickEventStream: Observable<Void> { get }
 }
 
 protocol ImageListener: class {
+  
 }
 
 final class ImageInteractor:
@@ -33,11 +35,20 @@ final class ImageInteractor:
   
   weak var listener: ImageListener?
   
+  private let viewModelRelay: BehaviorRelay<UIImage>
+  
+  private(set) lazy var viewModel: Observable<UIImage> = viewModelRelay.asObservable()
+  
   // MARK: - Con(De)structor
   
-  override init(presenter: ImagePresentable) {
+  init(image: UIImage, presenter: ImagePresentable) {
+    viewModelRelay = .init(value: image)
     super.init(presenter: presenter)
     presenter.listener = self
+  }
+  
+  deinit {
+    print("deinit: \(type(of: self))")
   }
   
   // MARK: - Overridden: PresentableInteractor
@@ -51,8 +62,8 @@ final class ImageInteractor:
   // MARK: - Binding
   
   private func bindPresenter() {
-    presenter.detailButtonClicked
-      .bind { [weak self] _ in
+    presenter.detailButtonClickEventStream
+      .bind { [weak self] in
         self?.router?.attachImageDetailRIB()
     }
     .disposeOnDeactivate(interactor: self)

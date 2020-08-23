@@ -9,38 +9,34 @@
 import RIBs
 
 protocol ImageDependency: Dependency {
+  var image: UIImage { get }
 }
 
 final class ImageComponent: Component<ImageDependency> {
-  let image: UIImage
-  
-  init(
-    image: UIImage,
-    dependency: ImageDependency
-  ) {
-    self.image = image
-    super.init(dependency: dependency)
+  var image: UIImage {
+    dependency.image
   }
 }
 
-extension EmptyComponent: ImageDependency { }
-
 protocol ImageBuildable: Buildable {
-  func build(image: UIImage, withListener listener: ImageListener) -> ImageRouting
+  func build(withListener listener: ImageListener) -> ImageRouting
 }
 
 final class ImageBuilder:
   Builder<ImageDependency>,
   ImageBuildable
 {
-  override init(dependency: ImageDependency = EmptyComponent()) {
+  override init(dependency: ImageDependency) {
     super.init(dependency: dependency)
   }
   
-  func build(image: UIImage, withListener listener: ImageListener) -> ImageRouting {
-    let component = ImageComponent(image: image, dependency: dependency)
-    let viewController = ImageViewController(image: image)
-    let interactor = ImageInteractor(presenter: viewController)
+  func build(withListener listener: ImageListener) -> ImageRouting {
+    let component = ImageComponent(dependency: dependency)
+    let viewController = ImageViewController()
+    let interactor = ImageInteractor(
+      image: component.image,
+      presenter: viewController
+    )
     interactor.listener = listener
     
     let imageDetailBuilder = ImageDetailBuilder(dependency: component)

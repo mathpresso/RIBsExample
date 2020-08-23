@@ -34,11 +34,20 @@ final class ImageDetailInteractor:
   
   weak var listener: ImageDetailListener?
   
+  private let viewModelRelay: BehaviorRelay<UIImage>
+  
+  private(set) lazy var viewModel: Observable<UIImage> = viewModelRelay.asObservable()
+  
   // MARK: - Con(De)structor
   
-  override init(presenter: ImageDetailPresentable) {
+  init(image: UIImage, presenter: ImageDetailPresentable) {
+    viewModelRelay = .init(value: image)
     super.init(presenter: presenter)
     presenter.listener = self
+  }
+  
+  deinit {
+    print("deinit: \(type(of: self))")
   }
   
   // MARK: - Overridden: PresentableInteractor

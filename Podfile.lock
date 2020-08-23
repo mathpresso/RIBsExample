@@ -8,20 +8,23 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
+  - SnapKit (5.0.1)
 
 DEPENDENCIES:
-  - RIBs (from `https://github.com/uber/RIBs.git`, commit `ffc489f00db785c8c0051678393f7aba0d52f1a4`)
+  - RIBs (from `https://github.com/uber/RIBs.git`, branch `master`)
   - RxCocoa
+  - SnapKit
 
 SPEC REPOS:
   trunk:
     - RxCocoa
     - RxRelay
     - RxSwift
+    - SnapKit
 
 EXTERNAL SOURCES:
   RIBs:
-    :commit: ffc489f00db785c8c0051678393f7aba0d52f1a4
+    :branch: master
     :git: https://github.com/uber/RIBs.git
 
 CHECKOUT OPTIONS:
@@ -34,7 +37,8 @@ SPEC CHECKSUMS:
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 32ae45348bbf9f9f651edf188a786c7e54c8b63a
+PODFILE CHECKSUM: ed3a8dc6f9fa8b84aae9fa055b8e24c2c2b91ac3
 
 COCOAPODS: 1.9.3

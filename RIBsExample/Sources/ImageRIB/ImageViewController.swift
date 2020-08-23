@@ -7,9 +7,12 @@
 //
 
 import RIBs
+import RxSwift
 import RxCocoa
+import SnapKit
 
 protocol ImagePresentableListener: class {
+  var viewModel: Observable<UIImage> { get }
 }
 
 final class ImageViewController:
@@ -21,39 +24,39 @@ final class ImageViewController:
   
   weak var listener: ImagePresentableListener?
   
-  lazy var detailButtonClicked: ControlEvent<Void> = detailButton.rx.tap
+  lazy var detailButtonClickEventStream: Observable<Void> = detailButton.rx.tap.asObservable()
   
   // MARK: - Properties
-  
-  private let image: UIImage
+ 
+  private let disposeBag: DisposeBag = .init()
   
   // MARK: - UIComponents
   
   private let imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.contentMode = .scaleAspectFit
     return imageView
   }()
   
   private var detailButton: UIButton = {
     let button = UIButton(type: .system)
-    button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle("Show detail image", for: .normal)
     return button
   }()
   
   // MARK: - Con(De)structor
   
-  init(image: UIImage) {
-    self.image = image
+  init() {
     super.init(nibName: nil, bundle: nil)
-    
-    imageView.image = image
+    modalPresentationStyle = .fullScreen
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  deinit {
+    print("deinit: \(type(of: self))")
   }
   
   // MARK: - Overridden: UIViewController
@@ -62,6 +65,18 @@ final class ImageViewController:
     super.viewDidLoad()
     
     setupUI()
+    bind(to: listener)
+  }
+  
+  // MARK: - Binding
+  
+  private func bind(to listener: ImagePresentableListener?) {
+    listener?.viewModel
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [weak self] image in
+        self?.imageView.image = image
+      })
+      .disposed(by: disposeBag)
   }
   
   // MARK: - ImageViewControllable
@@ -83,12 +98,16 @@ extension ImageViewController {
   }
   
   private func layout() {
-    imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
-    imageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
-    
-    detailButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    detailButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16).isActive = true
+    imageView.snp.makeConstraints {
+      $0.centerX.equalTo(view.snp.centerX)
+      $0.centerY.equalTo(view.snp.centerY)
+      $0.width.equalToSuperview().multipliedBy(0.5)
+      $0.height.equalTo(view.snp.width).multipliedBy(0.5)
+    }
+
+    detailButton.snp.makeConstraints {
+      $0.centerX.equalTo(imageView.snp.centerX)
+      $0.top.equalTo(imageView.snp.bottom).offset(8)
+    }
   }
 }
