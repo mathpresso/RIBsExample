@@ -34,6 +34,8 @@ final class ImageDetailInteractor:
   
   weak var listener: ImageDetailListener?
   
+  // MARK: - Properties
+  
   private let viewModelRelay: BehaviorRelay<UIImage>
   
   private(set) lazy var viewModel: Observable<UIImage> = viewModelRelay.asObservable()

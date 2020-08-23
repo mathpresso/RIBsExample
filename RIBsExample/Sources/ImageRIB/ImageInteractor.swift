@@ -21,7 +21,6 @@ protocol ImagePresentable: Presentable {
 }
 
 protocol ImageListener: class {
-  
 }
 
 final class ImageInteractor:

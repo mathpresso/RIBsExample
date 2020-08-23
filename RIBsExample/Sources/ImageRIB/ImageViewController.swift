@@ -78,12 +78,6 @@ final class ImageViewController:
       })
       .disposed(by: disposeBag)
   }
-  
-  // MARK: - ImageViewControllable
-  
-  func present(viewController: ViewControllable, animated: Bool) {
-    present(viewController.uiviewController, animated: animated, completion: nil)
-  }
 }
 
 // MARK: - SetupUI
