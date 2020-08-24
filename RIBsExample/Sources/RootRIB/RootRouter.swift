@@ -17,6 +17,7 @@ protocol RootInteractable:
 }
 
 protocol RootViewControllable: ViewControllable {
+  func present(_ viewController: ViewControllable, animated: Bool)
 }
 
 final class RootRouter:

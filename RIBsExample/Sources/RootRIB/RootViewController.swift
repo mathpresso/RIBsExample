@@ -20,3 +20,10 @@ final class RootViewController:
   
   weak var listener: RootPresentableListener?
 }
+
+// MARK: - RootViewControllable
+extension RootViewController {
+  func present(_ viewController: ViewControllable, animated: Bool) {
+    present(viewController.uiviewController, animated: animated)
+  }
+}

@@ -105,3 +105,16 @@ extension ImageViewController {
     }
   }
 }
+
+// MARK: - ImageViewControllable
+extension ImageViewController {
+  func present(_ viewController: ViewControllable, animated: Bool) {
+    present(viewController.uiviewController, animated: animated)
+  }
+  
+  func dismiss(_ viewController: ViewControllable, animated: Bool) {
+    guard !viewController.uiviewController.isBeingDismissed else { return }
+    
+    viewController.uiviewController.dismiss(animated: animated)
+  }
+}

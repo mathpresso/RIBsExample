@@ -23,7 +23,6 @@
 		53AC1ADF24E0CD34006763F4 /* ImageDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AC1ADE24E0CD34006763F4 /* ImageDetailInteractor.swift */; };
 		53AC1AE124E0CD3B006763F4 /* ImageDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AC1AE024E0CD3B006763F4 /* ImageDetailRouter.swift */; };
 		53AC1AE324E0CD44006763F4 /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AC1AE224E0CD44006763F4 /* ImageDetailViewController.swift */; };
-		53AC1AE824E0CF8B006763F4 /* ViewControllable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AC1AE724E0CF8B006763F4 /* ViewControllable+Extensions.swift */; };
 		53AC1AEC24E0D01A006763F4 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 53AC1AEB24E0D01A006763F4 /* image1.jpg */; };
 		89CDF2D0CA6248C5097380AD /* Pods_RIBsExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9E0B6E6965128205AD15D9 /* Pods_RIBsExample.framework */; };
 		DBB1EEAA24EE82370066DD0F /* RootComponent+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB1EEA924EE82370066DD0F /* RootComponent+Image.swift */; };
@@ -52,7 +51,6 @@
 		53AC1ADE24E0CD34006763F4 /* ImageDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailInteractor.swift; sourceTree = "<group>"; };
 		53AC1AE024E0CD3B006763F4 /* ImageDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailRouter.swift; sourceTree = "<group>"; };
 		53AC1AE224E0CD44006763F4 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
-		53AC1AE724E0CF8B006763F4 /* ViewControllable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllable+Extensions.swift"; sourceTree = "<group>"; };
 		53AC1AEB24E0D01A006763F4 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
 		DBB1EEA924EE82370066DD0F /* RootComponent+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+Image.swift"; sourceTree = "<group>"; };
 		DBB1EEAB24EE837B0066DD0F /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 			children = (
 				DBB1EEAB24EE837B0066DD0F /* AppComponent.swift */,
 				53AC1AB124E0CB64006763F4 /* AppDelegate.swift */,
-				53AC1AE624E0CF4E006763F4 /* Extensions */,
 				53AC1AC924E0CC94006763F4 /* ImageDetailRIB */,
 				53AC1AC824E0CC8B006763F4 /* ImageRIB */,
 				53AC1AC724E0CC85006763F4 /* RootRIB */,
@@ -154,14 +151,6 @@
 				53AC1AE224E0CD44006763F4 /* ImageDetailViewController.swift */,
 			);
 			path = ImageDetailRIB;
-			sourceTree = "<group>";
-		};
-		53AC1AE624E0CF4E006763F4 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				53AC1AE724E0CF8B006763F4 /* ViewControllable+Extensions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		5A6DB9345D5C8130D24DED49 /* Pods */ = {
@@ -311,7 +300,6 @@
 				53AC1ACD24E0CCD7006763F4 /* RootInteractor.swift in Sources */,
 				53AC1AD524E0CCFD006763F4 /* ImageInteractor.swift in Sources */,
 				53AC1ACB24E0CCCE006763F4 /* RootBuilder.swift in Sources */,
-				53AC1AE824E0CF8B006763F4 /* ViewControllable+Extensions.swift in Sources */,
 				53AC1AD724E0CD05006763F4 /* ImageRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

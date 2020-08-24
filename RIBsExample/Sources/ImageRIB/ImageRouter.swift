@@ -17,6 +17,8 @@ protocol ImageInteractable:
 }
 
 protocol ImageViewControllable: ViewControllable {
+  func present(_ viewController: ViewControllable, animated: Bool)
+  func dismiss(_ viewController: ViewControllable, animated: Bool)
 }
 
 final class ImageRouter:
@@ -47,12 +49,12 @@ extension ImageRouter {
     let router = imageDetailBuilder.build(withListener: interactor)
     imageDetailRouter = router
     attachChild(router)
-    viewControllable.present(router.viewControllable)
+    viewController.present(router.viewControllable, animated: true)
   }
   
   func detachImageDetailRIB() {
     guard let router = imageDetailRouter else { return }
-    viewControllable.dismiss(router.viewControllable)
+    viewController.dismiss(router.viewControllable, animated: true)
     detachChild(router)
     imageDetailRouter = nil
   }
