@@ -38,7 +38,9 @@ final class ImageDetailInteractor:
   
   private let viewModelRelay: BehaviorRelay<UIImage>
   
-  private(set) lazy var viewModel: Observable<UIImage> = viewModelRelay.asObservable()
+  var viewModel: Observable<UIImage> {
+    viewModelRelay.asObservable()
+  }
   
   // MARK: - Con(De)structor
   
