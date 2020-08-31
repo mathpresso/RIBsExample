@@ -26,7 +26,7 @@ $ open RIBsExample.xcodeproj
 
 1. [iOS RIBs Architecture](https://medium.com/qandastudy/1-ios-ribs-architecture-af9834956daf)
 
-2. RIBs Builder
+2. [RIBs Builder](https://medium.com/qandastudy/2-ribs-builder-51874e0cb310)
 
 3. RIBs Interactor
 
