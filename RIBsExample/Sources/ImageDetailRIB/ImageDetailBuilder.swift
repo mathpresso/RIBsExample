@@ -13,7 +13,7 @@ protocol ImageDetailDependency: Dependency {
 }
 
 final class ImageDetailComponent: Component<ImageDetailDependency> {
-  var image: UIImage {
+  fileprivate var image: UIImage {
     dependency.image
   }
 }
