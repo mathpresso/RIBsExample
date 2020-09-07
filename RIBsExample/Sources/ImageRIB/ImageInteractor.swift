@@ -34,11 +34,13 @@ final class ImageInteractor:
   
   weak var listener: ImageListener?
   
-  private let viewModelRelay: BehaviorRelay<UIImage>
+  // MARK: - ImageDetailPresentableListener
   
   var viewModel: Observable<UIImage> {
     viewModelRelay.asObservable()
   }
+  
+  private let viewModelRelay: BehaviorRelay<UIImage>
   
   // MARK: - Con(De)structor
   
