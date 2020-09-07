@@ -28,6 +28,6 @@ $ open RIBsExample.xcodeproj
 
 2. [RIBs Builder](https://medium.com/qandastudy/2-ribs-builder-51874e0cb310)
 
-3. RIBs Interactor
+3. [RIBs Interactor](https://medium.com/qandastudy/3-ribs-interactor-e58c65e2cd26)
 
 4. RIBs Router
