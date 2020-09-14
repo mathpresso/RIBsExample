@@ -44,7 +44,10 @@ final class ImageInteractor:
   
   // MARK: - Con(De)structor
   
-  init(image: UIImage, presenter: ImagePresentable) {
+  init(
+    image: UIImage,
+    presenter: ImagePresentable
+  ) {
     viewModelRelay = .init(value: image)
     super.init(presenter: presenter)
     presenter.listener = self

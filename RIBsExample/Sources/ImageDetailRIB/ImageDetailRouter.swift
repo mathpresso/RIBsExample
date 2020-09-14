@@ -20,8 +20,14 @@ final class ImageDetailRouter:
   ViewableRouter<ImageDetailInteractable, ImageDetailViewControllable>,
   ImageDetailRouting
 {
-  override init(interactor: ImageDetailInteractable, viewController: ImageDetailViewControllable) {
-    super.init(interactor: interactor, viewController: viewController)
+  override init(
+    interactor: ImageDetailInteractable,
+    viewController: ImageDetailViewControllable
+  ) {
+    super.init(
+      interactor: interactor,
+      viewController: viewController
+    )
     interactor.router = self
   }
 }

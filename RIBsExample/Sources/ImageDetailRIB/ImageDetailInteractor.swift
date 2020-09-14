@@ -61,10 +61,12 @@ final class ImageDetailInteractor:
     
     bindPresenter()
   }
-  
-  // MARK: - Binding
-  
-  private func bindPresenter() {
+}
+
+// MARK: - Binding
+
+private extension ImageDetailInteractor {
+  func bindPresenter() {
     presenter.detachObservable
       .bind { [weak self] _ in
         self?.listener?.detachImageDetailRIB()
