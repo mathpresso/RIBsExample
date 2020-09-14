@@ -30,4 +30,4 @@ $ open RIBsExample.xcodeproj
 
 3. [RIBs Interactor](https://medium.com/qandastudy/3-ribs-interactor-e58c65e2cd26)
 
-4. RIBs Router
+4. [RIBs Router](https://medium.com/qandastudy/4-ribs-router-32b320c9669d)
