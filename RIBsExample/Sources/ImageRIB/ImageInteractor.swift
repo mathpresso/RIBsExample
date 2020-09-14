@@ -64,9 +64,10 @@ final class ImageInteractor:
     
     bindPresenter()
   }
-  
-  // MARK: - Binding
-  
+}
+
+// MARK: - Binding
+private extension ImageInteractor {
   private func bindPresenter() {
     presenter.detailButtonClickObservable
       .bind { [weak self] in

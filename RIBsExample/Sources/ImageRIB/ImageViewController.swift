@@ -27,7 +27,7 @@ final class ImageViewController:
   lazy var detailButtonClickObservable: Observable<Void> = detailButton.rx.tap.asObservable()
   
   // MARK: - Properties
- 
+  
   private let disposeBag: DisposeBag = .init()
   
   // MARK: - UIComponents
@@ -87,7 +87,7 @@ private extension ImageViewController {
       $0.width.equalToSuperview().multipliedBy(0.5)
       $0.height.equalTo(view.snp.width).multipliedBy(0.5)
     }
-
+    
     detailButton.snp.makeConstraints {
       $0.centerX.equalTo(imageView.snp.centerX)
       $0.top.equalTo(imageView.snp.bottom).offset(8)

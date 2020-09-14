@@ -27,9 +27,10 @@ protocol RootBuildable: Buildable {
   func build() -> LaunchRouting
 }
 
-final class RootBuilder: Builder<RootDependency>, RootBuildable {
-  // MARK: - RootBuildable
-  
+final class RootBuilder:
+  Builder<RootDependency>,
+  RootBuildable
+{
   func build() -> LaunchRouting {
     let viewController = RootViewController()
     let component = RootComponent(
