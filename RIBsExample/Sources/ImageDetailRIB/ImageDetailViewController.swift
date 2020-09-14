@@ -69,23 +69,6 @@ final class ImageDetailViewController:
     bind(to: listener)
     bindView()
   }
-  
-  // MARK: - Binding
-  
-  private func bind(to listener: ImageDetailPresentableListener?) {
-    listener?.viewModel
-      .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { [weak self] image in
-        self?.imageView.image = image
-      })
-      .disposed(by: disposeBag)
-  }
-  
-  private func bindView() {
-    closeButton.rx.tap
-      .bind(to: detachRelay)
-      .disposed(by: disposeBag)
-  }
 }
 
 // MARK: - SetupUI
@@ -110,6 +93,24 @@ extension ImageDetailViewController {
       $0.top.equalTo(closeButton.snp.bottom).offset(16)
       $0.leading.trailing.bottom.equalToSuperview()
     }
+  }
+}
+
+// MARK: - Binding
+private extension ImageDetailViewController {
+  func bind(to listener: ImageDetailPresentableListener?) {
+    listener?.viewModel
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [weak self] image in
+        self?.imageView.image = image
+      })
+      .disposed(by: disposeBag)
+  }
+  
+  func bindView() {
+    closeButton.rx.tap
+      .bind(to: detachRelay)
+      .disposed(by: disposeBag)
   }
 }
 

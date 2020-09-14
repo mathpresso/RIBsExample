@@ -67,22 +67,11 @@ final class ImageViewController:
     setupUI()
     bind(to: listener)
   }
-  
-  // MARK: - Binding
-  
-  private func bind(to listener: ImagePresentableListener?) {
-    listener?.viewModel
-      .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { [weak self] image in
-        self?.imageView.image = image
-      })
-      .disposed(by: disposeBag)
-  }
 }
 
 // MARK: - SetupUI
-extension ImageViewController {
-  private func setupUI() {
+private extension ImageViewController {
+  func setupUI() {
     view.backgroundColor = .white
     
     view.addSubview(imageView)
@@ -91,7 +80,7 @@ extension ImageViewController {
     layout()
   }
   
-  private func layout() {
+  func layout() {
     imageView.snp.makeConstraints {
       $0.centerX.equalTo(view.snp.centerX)
       $0.centerY.equalTo(view.snp.centerY)
@@ -103,6 +92,18 @@ extension ImageViewController {
       $0.centerX.equalTo(imageView.snp.centerX)
       $0.top.equalTo(imageView.snp.bottom).offset(8)
     }
+  }
+}
+
+// MARK: - Binding
+private extension ImageViewController {
+  func bind(to listener: ImagePresentableListener?) {
+    listener?.viewModel
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [weak self] image in
+        self?.imageView.image = image
+      })
+      .disposed(by: disposeBag)
   }
 }
 
